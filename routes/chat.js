@@ -8,12 +8,13 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     console.log('Request received:', req.body);
 
     let inputJson = '';
     console.log('Enter the JSON response (type "END" on a new line to finish):');
 
+    rl.removeAllListeners('line');
     rl.on('line', (line) => {
         if (line.trim().toLowerCase() === 'end') {
             try {
