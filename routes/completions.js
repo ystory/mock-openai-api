@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 });
 
 router.post('/', (req, res) => {
-    console.log('Request received:', req.body);
+    process.stdout.write('\n' + JSON.stringify(req.body) + '\n');
     const {
         model,
         prompt,

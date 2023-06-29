@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
+    process.stdout.write('\n' + JSON.stringify(req.body) + '\n');
     try {
         const { model, input, user } = req.body;
 

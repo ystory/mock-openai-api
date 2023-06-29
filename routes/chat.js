@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 });
 
 router.post('/', (req, res) => {
-    console.log('Request received:', req.body);
+    process.stdout.write('\n' + JSON.stringify(req.body) + '\n');
 
     let inputString = '';
     console.log('Enter the response text (type "END" on a new line to finish):');

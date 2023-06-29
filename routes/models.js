@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+    process.stdout.write('\n' + JSON.stringify(req.body) + '\n');
     res.json(
         {
             "object": "list",
