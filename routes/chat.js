@@ -11,14 +11,13 @@ const rl = readline.createInterface({
 router.post('/', (req, res) => {
     console.log('Request received:', req.body);
 
-    let inputJson = '';
-    console.log('Enter the JSON response (type "END" on a new line to finish):');
+    let inputString = '';
+    console.log('Enter the response text (type "END" on a new line to finish):');
 
     rl.removeAllListeners('line');
     rl.on('line', (line) => {
         if (line.trim().toLowerCase() === 'end') {
             try {
-                const userInput = JSON.parse(inputJson);
                 const id = 'chatcmpl-' + crypto.randomBytes(4).toString('hex');
                 const created = Math.floor(new Date() / 1000);
                 const responseData = {
@@ -30,7 +29,7 @@ router.post('/', (req, res) => {
                             index: 0,
                             message: {
                                 role: 'assistant',
-                                content: JSON.stringify(userInput)
+                                content: inputString
                             },
                             finish_reason: 'stop'
                         }
@@ -43,12 +42,12 @@ router.post('/', (req, res) => {
                 };
                 res.json(responseData);
             } catch (error) {
-                console.error('Invalid JSON format:', error);
-                res.status(400).send('Invalid JSON format');
+                console.error('Error creating response:', error);
+                res.status(400).send('Error creating response');
             }
-            inputJson = '';
+            inputString = '';
         } else {
-            inputJson += line;
+            inputString += line;
         }
     });
 });
