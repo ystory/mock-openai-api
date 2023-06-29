@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var modelsRouter = require('./routes/models');
 var chatRouter = require('./routes/chat');
 var embeddingsRouter = require('./routes/embeddings');
+var completionsRouter = require('./routes/completions');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use('/', indexRouter);
 app.use('/v1/models', modelsRouter);
 app.use('/v1/chat/completions', chatRouter);
 app.use('/v1/embeddings', embeddingsRouter);
+app.use('/v1/completions', completionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
